@@ -6,14 +6,12 @@ from django.contrib.auth.models import User
 
 class Subscriber(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	end_date = DateTimeField('End Date')
+	end_date = models.DateField('End Date')
 	PRINT = 'P'
 	EMAIL = 'E'
-	BOTH = 'B'
 	SUBSCRIPTION_TYPE = (
 		(PRINT, 'Print'),
 		(EMAIL, 'Email'),
-		(BOTH, 'Both')
 		)
 	subscription_type = models.CharField(max_length=1, 
 		choices=SUBSCRIPTION_TYPE, default=PRINT)
@@ -27,9 +25,9 @@ class Package(models.Model):
 	price = models.DecimalField(max_digits=5, decimal_places=2)
 	months = models.IntegerField()
 
-class Transaction(models.Model)
+class Transaction(models.Model):
 	subscriber = models.ForeignKey(Subscriber)
-	date = DateTimeField('Transaction Date')
+	date = models.DateField('Transaction Date')
 	paid = models.DecimalField(max_digits=5, decimal_places=2)
 	received = models.CharField(max_length=200)
 	notes = models.CharField(max_length=200)
