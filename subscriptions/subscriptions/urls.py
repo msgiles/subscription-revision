@@ -17,5 +17,6 @@ from django.contrib import admin
 
 urlpatterns = [
 	url(r'^subscribers/', include('subscribers.urls')),
+	url(r'^associates/', include('associates.urls')),
     url(r'^admin/', admin.site.urls),
 ]
