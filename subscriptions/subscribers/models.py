@@ -21,11 +21,13 @@ class Subscriber(models.Model):
 	subscription_type = models.CharField(max_length=1, 
 										choices=SUBSCRIPTION_TYPE, 
 										default=PRINT)
-	package = models.ForeignKey(Package, related_name='package', null=True)
+	package = models.ForeignKey(Package, related_name='package', null=True, blank=True)
 	line1 = models.CharField(max_length=200)
-	line2 = models.CharField(max_length=200)
+	line2 = models.CharField(max_length=200, blank=True)
+	city = models.CharField(max_length=200)
 	state = USStateField()
 	zip_code = USZipCodeField()
+
 
 class Transaction(models.Model):
 	subscriber = models.ForeignKey(Subscriber)
